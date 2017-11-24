@@ -9,15 +9,17 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="603dp"
+        android:background="@android:color/darker_gray"
         android:orientation="vertical">
 
         <LinearLayout
             android:id="@+id/linearLayoutTop"
-            android:focusable="true"
-            android:focusableInTouchMode="true"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
+            android:background="@android:color/darker_gray"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
             android:orientation="horizontal"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -29,16 +31,17 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_weight="1"
+                android:background="@android:color/white"
                 android:ems="10"
                 android:inputType="textPersonName" />
 
-            <ImageButton
-                android:id="@+id/imgBtnFilter"
-                android:layout_width="30dp"
-                android:layout_height="44dp"
-                android:layout_marginEnd="10dp"
+            <Button
+                android:id="@+id/btnSearch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                app:srcCompat="@android:drawable/btn_star" />
+                android:background="@android:color/holo_blue_light"
+                android:text="@string/search" />
 
         </LinearLayout>
 
@@ -46,35 +49,37 @@
             android:id="@+id/listView"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:background="@android:color/white">
 
         </ListView>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="60dp"
+            android:background="@android:color/darker_gray"
             android:orientation="horizontal">
 
-            <ImageButton
-                android:id="@+id/imgBtnExit"
-                android:layout_width="40dp"
-                android:layout_height="45dp"
-                android:layout_marginEnd="140dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_weight="1"
-                app:srcCompat="@mipmap/ic_launcher" />
-
-            <ImageButton
-                android:id="@+id/imgBtnAdd"
-                android:layout_width="40dp"
+            <Button
+                android:id="@+id/btnExit"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="6dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginStart="80dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
                 android:layout_weight="1"
-                app:srcCompat="@mipmap/ic_launcher" />
+                android:background="@android:color/holo_orange_light"
+                android:text="@string/exit" />
+
+            <Button
+                android:id="@+id/btnAdd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:layout_marginStart="50dp"
+                android:layout_marginTop="5dp"
+                android:layout_weight="1"
+                android:background="@android:color/holo_green_light"
+                android:text="@string/newRecipe" />
         </LinearLayout>
     </LinearLayout>
 
