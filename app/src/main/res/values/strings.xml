@@ -1,3 +1,19 @@
 <resources>
     <string name="app_name">MyRecipev1</string>
+
+    <string name="newRecipe">New Recipe</string>
+    <string name="search">Search</string>
+    <string name="edit">Edit</string>
+    <string name="back">Back</string>
+    <string name="cancel">Cancel</string>
+    <string name="save">Save</string>
+    <string name="exit">Exit</string>
+    <string name="clear">Clear</string>
+    <string name="submit">Submit</string>
+
+    <string name="nan">""</string>
+
+    <string name="title">Title : </string>
+    <string name="instruct">Recipe Instructions : </string>
+
 </resources>
