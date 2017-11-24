@@ -27,7 +27,7 @@
                 android:background="@android:color/white"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:text="@string/nan" />
+                android:text="@string/empty" />
 
             <Button
                 android:id="@+id/btnSearch"
