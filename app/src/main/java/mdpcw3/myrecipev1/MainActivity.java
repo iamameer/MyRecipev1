@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
 
     //This method initialize settings and items
     private void init(){
-        Log.d("MyRecipe","MainActivity: Initializing settings and items");
+        Log.d("MyRecipe","=MainActivity: Initializing settings and items");
         txtSearch = findViewById(R.id.txtSearch);
 
         btnSearch = findViewById(R.id.btnSearch);
@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
 
     //This method initialize events
     private void setEvents(){
-        Log.d("MyRecipe","MainActivity: Initializing events and listeners");
+        Log.d("MyRecipe","=MainActivity: Initializing events and listeners");
         //Search method for Search Button
         btnSearch.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,10 +71,13 @@ public class MainActivity extends AppCompatActivity {
 
     //This method display the database in the listView
     public void display(){
-        Log.d("MyRecipe","MainActivity: Retrieving data from database");
+        Log.d("MyRecipe","=MainActivity: Retrieving data from database");
         //TODO listView
     }
 
+    /*
+    *  Activity Lifecycle
+    * */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -24,7 +24,7 @@ public class RecipeDetail extends AppCompatActivity {
 
     //This method initialize settings and items
     private void init(){
-        Log.d("MyRecipe","MainActivity: Initializing settings and items");
+        Log.d("MyRecipe","@RecipeDetail: Initializing settings and items");
         txtTitle = findViewById(R.id.txtTitle);
         txtIns = findViewById(R.id.txtIns);
 
@@ -44,7 +44,7 @@ public class RecipeDetail extends AppCompatActivity {
 
     //This method initialize events
     private void setEvents(){
-        Log.d("MyRecipe","RecipeDetail: Initializing events and listeners");
+        Log.d("MyRecipe","@RecipeDetail: Initializing events and listeners");
 
         //onClick Listener for btnBackCancel
         btnBackCancel.setOnClickListener(new View.OnClickListener() {
@@ -71,6 +71,9 @@ public class RecipeDetail extends AppCompatActivity {
         });
     }
 
+    /*
+    *  Activity Lifecycle
+    * */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
