@@ -8,6 +8,7 @@
 
 package mdpcw3.myrecipev1;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -19,8 +20,8 @@ public class RecipeDetail extends AppCompatActivity {
 
     //Global Variables
     private EditText txtTitle, txtIns;
-    private Button btnBackCancel, btnClearDelete, btnEditSaveSubmit;
-    private boolean isNewRecipe, isViewRecipe;
+    private Button btnBackCancel, btnClearDelete, btnEditSaveAdd;
+    private boolean isNewRecipe, isViewRecipe, viewMode, editMode;
 
     //This method initialize settings and items
     private void init(){
@@ -30,11 +31,11 @@ public class RecipeDetail extends AppCompatActivity {
 
         btnBackCancel = findViewById(R.id.btnBackCancel);
         btnClearDelete = findViewById(R.id.btnClearDelete);
-        btnEditSaveSubmit = findViewById(R.id.btnEditSaveSubmit);
+        btnEditSaveAdd = findViewById(R.id.btnEditSaveAdd);
 
-        //TODO : get bundle/intent
-        //isNewRecipe = get;
-        //isViewRecipe = get;
+        isNewRecipe = getIntent().getBooleanExtra("isNewRecipe",false);
+        isViewRecipe = getIntent().getBooleanExtra("isViewRecipe",false);
+        Log.d("MyRecipe","@RecipeDetail: isNewRecipe: "+isNewRecipe+"|| isViewRecipe: "+isViewRecipe);
         //txtTitle.setText();
         //txtIns.setText();
 
@@ -50,7 +51,11 @@ public class RecipeDetail extends AppCompatActivity {
         btnBackCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //TODO
+                /*if (isNewRecipe){finish();}
+                if (isViewRecipe){
+                    if(viewMode)
+                    finish();
+                }*/
             }
         });
 
@@ -63,12 +68,48 @@ public class RecipeDetail extends AppCompatActivity {
         });
 
         //onClick Listener for btnEditSaveSubmit
-        btnEditSaveSubmit.setOnClickListener(new View.OnClickListener() {
+        btnEditSaveAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //TODO
             }
         });
+    }
+
+    //This method add the new recipe into the database
+    public void add(){
+        Log.d("MyRecipe","@RecipeDetail: Added new Recipe into the database");
+        //TODO btnAdd ?
+    }
+
+    //This method delete the selected recipe from the database
+    public void delete(){
+        Log.d("MyRecipe","@RecipeDetail: Deleting a Recipe from the database");
+        //TODO btnDelete ?
+    }
+
+    //This method update the selected recipe
+    public void save(){
+        Log.d("MyRecipe","@RecipeDetail: Updating recipe");
+        //TODO btnSave ?
+    }
+
+    //This method simply clear the EditText
+    public void clear(){
+        Log.d("MyRecipe","@RecipeDetail: Updating recipe");
+        //TODO btnCear
+    }
+
+    //This method goes into edit mode
+    public void modeEdit(){
+        Log.d("MyRecipe","@RecipeDetail: Entering editing mode");
+        //TODO !isViewMode
+    }
+
+    //This method goes into read/view mode
+    public void modeView(){
+        Log.d("MyRecipe","@RecipeDetail: Entering viewing mode");
+        //TODO isViewMode
     }
 
     /*
