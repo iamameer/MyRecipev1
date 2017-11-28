@@ -15,6 +15,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class RecipeDetail extends AppCompatActivity {
 
@@ -80,12 +81,41 @@ public class RecipeDetail extends AppCompatActivity {
     public void add(){
         Log.d("MyRecipe","@RecipeDetail: Added new Recipe into the database");
         //TODO btnAdd ?
+        DBHelper dbHelper = new DBHelper(this,null,null,1);
+
+        String ins = txtIns.getText().toString();
+        Recipe recipe = new Recipe(txtTitle.getText().toString(),ins);
+
+        try {
+            dbHelper.addRecipe(recipe);
+            Log.d("MyRecipe","@RecipeDetail: Successfully added a new recipe");
+            Toast.makeText(getApplicationContext(),"New recipe successfully added",Toast.LENGTH_SHORT).show();
+        }catch (Exception e){
+            Log.d("MyRecipe",e.toString());
+            Log.d("MyRecipe","@RecipeDetail: Error adding new recipe");
+            Toast.makeText(getApplicationContext(),"Error adding new recipe",Toast.LENGTH_SHORT).show();
+            txtIns.setText("");
+            txtTitle.setText("");
+        }
+        finish();
     }
 
     //This method delete the selected recipe from the database
     public void delete(){
         Log.d("MyRecipe","@RecipeDetail: Deleting a Recipe from the database");
         //TODO btnDelete ?
+        DBHelper dbHelper = new DBHelper(this,null,null,1);
+
+        boolean result = dbHelper.deleteRecipe(txtTitle.getText().toString());
+
+            if (result){
+                Log.d("MyRecipe","@RecipeDetail: Successfully deleted recipe");
+                Toast.makeText(getApplicationContext(),"Recipe successfully deleted",Toast.LENGTH_SHORT).show();
+            }else{
+                Log.d("MyRecipe","@RecipeDetail: Error deleting recipe");
+                Toast.makeText(getApplicationContext(),"Error deleting new recipe",Toast.LENGTH_SHORT).show();
+            }
+        finish();
     }
 
     //This method update the selected recipe

@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
         btnSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                search();
+                //search();
             }
         });
 
@@ -83,6 +83,16 @@ public class MainActivity extends AppCompatActivity {
     public void search(){
         Log.d("MyRecipe","=MainActivity: Filtering/Search");
         //TODO listView, txtSearch
+        DBHelper dbHelper = new DBHelper(this,null,null,1);
+        Recipe recipe = dbHelper.findRecipe(txtSearch.getText().toString());
+
+        if (recipe != null){
+            //listView.add ?
+            //String.valueof(recipe.getID()); getRecipe getTitle
+        }else{
+            Toast.makeText(getApplicationContext(),
+                    "\""+txtSearch.getText().toString()+"\" not found",Toast.LENGTH_SHORT).show();
+        }
     }
 
     //This method launch RecipeDetail as new Intent, with passing some variable
@@ -98,6 +108,7 @@ public class MainActivity extends AppCompatActivity {
     //This method view the selected recipe
     public void viewRecipe(int position){
         Log.d("MyRecipe","=MainActivity: Launching RecipeDetail--> View Recipe : "+listView.getItemAtPosition(position));
+        //^implement search()
         //TODO isViewRecipe, pass intent
     }
 
