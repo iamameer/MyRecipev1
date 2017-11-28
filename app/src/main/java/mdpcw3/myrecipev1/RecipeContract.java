@@ -14,8 +14,10 @@ public final class RecipeContract {
 
     /* Inner class that defines the table contents */
     public static class RecipeEntry implements BaseColumns {
-        public static final String TABLE_NAME = "entry";
+        public static final String DATABASE_NAME = "myRecipe.db";
+        public static final String TABLE_NAME = "recipe";
+        public static final String COLUMN_NAME_ID = "_id";
         public static final String COLUMN_NAME_TITLE = "title";
-        //public static final String COLUMN_NAME_RECIPE = "recipe";
+        public static final String COLUMN_NAME_RECIPE = "recipe";
     }
 }
