@@ -79,6 +79,7 @@ public class RecipeDetail extends AppCompatActivity {
             public void onClick(View view) {
                 if (btnClearDelete.getText().toString().equals("Clear")){
                     Log.d("MyRecipe","@RecipeDetail: btnClear()");
+                    clear();
                 }else if (btnClearDelete.getText().toString().equals("Delete")){
                     Log.d("MyRecipe","@RecipeDetail: btnDelete()");
                 }
@@ -96,6 +97,7 @@ public class RecipeDetail extends AppCompatActivity {
                     Log.d("MyRecipe","@RecipeDetail: btnSave()");
                 }else if (btnEditSaveAdd.getText().toString().equals("Add")){
                     Log.d("MyRecipe","@RecipeDetail: btnAdd()");
+                    add();
                 }
             }
         });
@@ -104,7 +106,6 @@ public class RecipeDetail extends AppCompatActivity {
     //This method add the new recipe into the database
     public void add(){
         Log.d("MyRecipe","@RecipeDetail: Added new Recipe into the database");
-        //TODO btnAdd ?
         DBHelper dbHelper = new DBHelper(this,null,null,1);
 
         String ins = txtIns.getText().toString();
@@ -150,8 +151,9 @@ public class RecipeDetail extends AppCompatActivity {
 
     //This method simply clear the EditText
     public void clear(){
-        Log.d("MyRecipe","@RecipeDetail: Updating recipe");
-        //TODO btnCear
+        Log.d("MyRecipe","@RecipeDetail: clear()");
+        txtIns.setText("");
+        txtTitle.setText("");
     }
 
     //This method goes into new mode
@@ -173,6 +175,9 @@ public class RecipeDetail extends AppCompatActivity {
         txtTitle.setEnabled(true);
         txtIns.setEnabled(true);
 
+        txtTitle.setBackgroundColor(Color.WHITE);
+        txtIns.setBackgroundColor(Color.WHITE);
+
         btnEditSaveAdd.setText(R.string.save);
         btnClearDelete.setText(R.string.clear);
         btnBackCancel.setText(R.string.cancel);
@@ -183,6 +188,9 @@ public class RecipeDetail extends AppCompatActivity {
         Log.d("MyRecipe","@RecipeDetail: Entering viewing mode");
         txtTitle.setEnabled(false);
         txtIns.setEnabled(false);
+
+        txtTitle.setBackgroundColor(getResources().getColor(R.color.smoothgreen));
+        txtIns.setBackgroundColor(getResources().getColor(R.color.smoothgreen));
 
         btnEditSaveAdd.setText(R.string.edit);
         btnClearDelete.setText(R.string.delete);

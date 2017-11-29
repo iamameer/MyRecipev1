@@ -8,15 +8,21 @@
 package mdpcw3.myrecipev1;
 
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -35,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         btnAdd = findViewById(R.id.btnAdd);
 
         listView = findViewById(R.id.listView);
-
+        listView.setBackgroundColor(getResources().getColor(R.color.smoothblue));
     }
 
     //This method initialize events
@@ -45,7 +51,12 @@ public class MainActivity extends AppCompatActivity {
         btnSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //search();
+                if (!txtSearch.getText().toString().equals("")){
+                    search();
+                }else{
+                    Log.d("MyRecipe","=MainActivity: Empty searchbox");
+                    Toast.makeText(getApplicationContext(),"Empty searchbox",Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -73,19 +84,39 @@ public class MainActivity extends AppCompatActivity {
     //This method display the database in the listView
     public void display(){
         Log.d("MyRecipe","=MainActivity: Retrieving recipe from from database");
-        //TODO listView
+        DBHelper dbHelper = new DBHelper(this,null,null,1);
+        ArrayList<Recipe> recipeArrayList = dbHelper.display();
+
+        if (recipeArrayList!=null){
+            List<String> title = new ArrayList<String>();
+            for (int i= 0; i<recipeArrayList.size(); i++){
+                title.add(recipeArrayList.get(i).get_title());
+            }
+            ArrayAdapter<String> adapter =
+                    new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,title);
+            listView.setAdapter(adapter);
+        }else{
+            Toast.makeText(getApplicationContext(),
+                    "\""+txtSearch.getText().toString()+"\" no item in Database",Toast.LENGTH_SHORT).show();
+            Log.d("MyRecipe","=MainActivity: Empty database");
+        }
+
     }
 
     //This method refine the display of the database in the listView
     public void search(){
         Log.d("MyRecipe","=MainActivity: Filtering/Search");
-        //TODO listView, txtSearch
         DBHelper dbHelper = new DBHelper(this,null,null,1);
         Recipe recipe = dbHelper.findRecipe(txtSearch.getText().toString());
 
         if (recipe != null){
-            //listView.add ?
-            //String.valueof(recipe.getID()); getRecipe getTitle
+            //creating a string array for the recipe
+            //https://android--code.blogspot.my/2015/08/android-listview-add-items.html
+            List<String> result = new ArrayList<String>();
+            result.add(recipe.get_title());
+            ArrayAdapter<String> adapter =
+                    new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,result);
+            listView.setAdapter(adapter);
         }else{
             Toast.makeText(getApplicationContext(),
                     "\""+txtSearch.getText().toString()+"\" not found",Toast.LENGTH_SHORT).show();
@@ -121,8 +152,6 @@ public class MainActivity extends AppCompatActivity {
         //Initialising variables and setting up events
         init();
         setEvents();
-        //displaying database into listview
-        display();
     }
 
     @Override
@@ -141,6 +170,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume(){
         super.onResume();
         Log.d("MyRecipe","=MainActivity onResume()");
+        //displaying database into listview
+        display();
+        Log.d("MyRecipe","=MainActivity DATABASE display()");
     }
 
     @Override

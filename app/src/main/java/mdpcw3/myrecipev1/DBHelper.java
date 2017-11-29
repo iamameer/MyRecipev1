@@ -12,6 +12,9 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 import mdpcw3.myrecipev1.provider.MyContentProvider;
 
 public class DBHelper extends SQLiteOpenHelper {
@@ -93,6 +96,34 @@ public class DBHelper extends SQLiteOpenHelper {
 
         if (rowsDeleted >0){result = true;}
 
+        return result;
+    }
+
+    public ArrayList<Recipe> display(){
+        String[] projection = {
+                RecipeContract.RecipeEntry.COLUMN_NAME_ID,
+                RecipeContract.RecipeEntry.COLUMN_NAME_TITLE,
+                RecipeContract.RecipeEntry.COLUMN_NAME_RECIPE};
+
+        Cursor cursor = myCR.query(
+                MyContentProvider.CONTENT_URI,projection,null,null,null);
+
+        ArrayList<Recipe> result = new ArrayList<Recipe>();
+        try{
+            if(cursor.moveToFirst()){
+                Log.d("MyRecipe","cursor : inside IF");
+                do{
+                    Recipe recipe = new Recipe();
+                    Log.d("MyRecipe","cursor: inside DO");
+                    recipe.set_id(Integer.parseInt(cursor.getString(0)));
+                    recipe.set_title(cursor.getString(1));
+                    recipe.set_recipe(cursor.getString(2));
+                    result.add(recipe);
+                }while(cursor.moveToNext());
+            }cursor.close();
+        }catch (Exception e){
+            Log.d("MyRecipe",e.toString());
+        }
         return result;
     }
 }
