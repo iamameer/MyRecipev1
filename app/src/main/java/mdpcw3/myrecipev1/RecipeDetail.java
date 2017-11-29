@@ -45,7 +45,8 @@ public class RecipeDetail extends AppCompatActivity {
         if (isNewRecipe){
             modeNew();
         }else{
-            //TODO get intent or search
+            txtTitle.setText(getIntent().getStringExtra("title"));
+            txtIns.setText(getIntent().getStringExtra("recipe"));
             modeView();
         }
 

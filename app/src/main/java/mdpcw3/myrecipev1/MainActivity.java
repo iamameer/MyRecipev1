@@ -137,6 +137,20 @@ public class MainActivity extends AppCompatActivity {
         Log.d("MyRecipe","=MainActivity: Launching RecipeDetail--> View Recipe : "+listView.getItemAtPosition(position));
         //^implement search()
         //TODO !isNewRecipe, pass intent-copy newRecipe()
+        DBHelper dbHelper = new DBHelper(this,null,null,1);
+        Recipe recipe = dbHelper.findRecipe(listView.getItemAtPosition(position).toString());
+
+        if (recipe != null){
+            Intent intent = new Intent(getApplicationContext(),RecipeDetail.class);
+            intent.putExtra("isNewRecipe",false);
+            intent.putExtra("title",recipe.get_title());
+            intent.putExtra("recipe",recipe.get_recipe());
+            startActivity(intent);
+        }else{
+            Log.d("MyRecipe","=MainActivity: Error viewing item");
+            Toast.makeText(getApplicationContext(),"Error viewing item",Toast.LENGTH_SHORT).show();
+        }
+
     }
 
 
