@@ -129,14 +129,12 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(getApplicationContext(),RecipeDetail.class);
         intent.putExtra("isNewRecipe",true);
         startActivity(intent);
-        //TODO isNewRecipe, pass intent
     }
 
     //This method view the selected recipe
     public void viewRecipe(int position){
         Log.d("MyRecipe","=MainActivity: Launching RecipeDetail--> View Recipe : "+listView.getItemAtPosition(position));
         //^implement search()
-        //TODO !isNewRecipe, pass intent-copy newRecipe()
         DBHelper dbHelper = new DBHelper(this,null,null,1);
         Recipe recipe = dbHelper.findRecipe(listView.getItemAtPosition(position).toString());
 

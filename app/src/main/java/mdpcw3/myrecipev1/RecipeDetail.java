@@ -62,6 +62,7 @@ public class RecipeDetail extends AppCompatActivity {
             public void onClick(View view) {
                 if (btnBackCancel.getText().toString().equals("Back")){
                     Log.d("MyRecipe","@RecipeDetail: btnBack()");
+                    //TODO BACK; check mode //isEditSaved?
                 }else if (btnBackCancel.getText().toString().equals("Cancel")){
                     Log.d("MyRecipe","@RecipeDetail: btnCancel()");
                     if(isNewRecipe){
@@ -83,6 +84,7 @@ public class RecipeDetail extends AppCompatActivity {
                     clear();
                 }else if (btnClearDelete.getText().toString().equals("Delete")){
                     Log.d("MyRecipe","@RecipeDetail: btnDelete()");
+                    delete();
                 }
             }
         });
@@ -96,6 +98,7 @@ public class RecipeDetail extends AppCompatActivity {
                     modeEdit();
                 }else if (btnEditSaveAdd.getText().toString().equals("Save")){
                     Log.d("MyRecipe","@RecipeDetail: btnSave()");
+                    //TODO SAVE
                 }else if (btnEditSaveAdd.getText().toString().equals("Add")){
                     Log.d("MyRecipe","@RecipeDetail: btnAdd()");
                     add();
@@ -129,7 +132,6 @@ public class RecipeDetail extends AppCompatActivity {
     //This method delete the selected recipe from the database
     public void delete(){
         Log.d("MyRecipe","@RecipeDetail: Deleting a Recipe from the database");
-        //TODO btnDelete ?
         DBHelper dbHelper = new DBHelper(this,null,null,1);
 
         boolean result = dbHelper.deleteRecipe(txtTitle.getText().toString());
