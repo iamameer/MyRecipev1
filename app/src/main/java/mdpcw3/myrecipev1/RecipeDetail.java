@@ -9,6 +9,7 @@
 package mdpcw3.myrecipev1;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -22,7 +23,7 @@ public class RecipeDetail extends AppCompatActivity {
     //Global Variables
     private EditText txtTitle, txtIns;
     private Button btnBackCancel, btnClearDelete, btnEditSaveAdd;
-    private boolean isNewRecipe, isViewRecipe, viewMode, editMode;
+    private boolean isNewRecipe;
 
     //This method initialize settings and items
     private void init(){
@@ -34,13 +35,19 @@ public class RecipeDetail extends AppCompatActivity {
         btnClearDelete = findViewById(R.id.btnClearDelete);
         btnEditSaveAdd = findViewById(R.id.btnEditSaveAdd);
 
-        isNewRecipe = getIntent().getBooleanExtra("isNewRecipe",false);
-        isViewRecipe = getIntent().getBooleanExtra("isViewRecipe",false);
-        Log.d("MyRecipe","@RecipeDetail: isNewRecipe: "+isNewRecipe+"|| isViewRecipe: "+isViewRecipe);
-        //txtTitle.setText();
-        //txtIns.setText();
+        btnEditSaveAdd.setBackgroundColor(getResources().getColor(R.color.hologreen));
+        btnClearDelete.setBackgroundColor(getResources().getColor(R.color.holoblue));
+        btnBackCancel.setBackgroundColor(getResources().getColor(R.color.holoorange));
 
-        //button state
+        isNewRecipe = getIntent().getBooleanExtra("isNewRecipe",false);
+
+        Log.d("MyRecipe","@RecipeDetail: isNewRecipe: "+isNewRecipe);
+        if (isNewRecipe){
+            modeNew();
+        }else{
+            //TODO get intent or search
+            modeView();
+        }
 
     }
 
@@ -52,11 +59,17 @@ public class RecipeDetail extends AppCompatActivity {
         btnBackCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /*if (isNewRecipe){finish();}
-                if (isViewRecipe){
-                    if(viewMode)
-                    finish();
-                }*/
+                if (btnBackCancel.getText().toString().equals("Back")){
+                    Log.d("MyRecipe","@RecipeDetail: btnBack()");
+                }else if (btnBackCancel.getText().toString().equals("Cancel")){
+                    Log.d("MyRecipe","@RecipeDetail: btnCancel()");
+                    if(isNewRecipe){
+                        finish();
+                        Log.d("MyRecipe","@RecipeDetail: No new recipe added");
+                    }else {
+                        modeView();
+                    }
+                }
             }
         });
 
@@ -64,7 +77,11 @@ public class RecipeDetail extends AppCompatActivity {
         btnClearDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //TODO
+                if (btnClearDelete.getText().toString().equals("Clear")){
+                    Log.d("MyRecipe","@RecipeDetail: btnClear()");
+                }else if (btnClearDelete.getText().toString().equals("Delete")){
+                    Log.d("MyRecipe","@RecipeDetail: btnDelete()");
+                }
             }
         });
 
@@ -72,7 +89,14 @@ public class RecipeDetail extends AppCompatActivity {
         btnEditSaveAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //TODO
+                if (btnEditSaveAdd.getText().toString().equals("Edit")){
+                    Log.d("MyRecipe","@RecipeDetail: btnEdit()");
+                    modeEdit();
+                }else if (btnEditSaveAdd.getText().toString().equals("Save")){
+                    Log.d("MyRecipe","@RecipeDetail: btnSave()");
+                }else if (btnEditSaveAdd.getText().toString().equals("Add")){
+                    Log.d("MyRecipe","@RecipeDetail: btnAdd()");
+                }
             }
         });
     }
@@ -130,16 +154,39 @@ public class RecipeDetail extends AppCompatActivity {
         //TODO btnCear
     }
 
+    //This method goes into new mode
+    public void modeNew(){
+        Log.d("MyRecipe","@RecipeDetail: Entering new mode");
+        txtTitle.setText("");
+        txtIns.setText("");
+        txtTitle.setEnabled(true);
+        txtIns.setEnabled(true);
+
+        btnEditSaveAdd.setText(R.string.submit);
+        btnClearDelete.setText(R.string.clear);
+        btnBackCancel.setText(R.string.cancel);
+    }
+
     //This method goes into edit mode
     public void modeEdit(){
         Log.d("MyRecipe","@RecipeDetail: Entering editing mode");
-        //TODO !isViewMode
+        txtTitle.setEnabled(true);
+        txtIns.setEnabled(true);
+
+        btnEditSaveAdd.setText(R.string.save);
+        btnClearDelete.setText(R.string.clear);
+        btnBackCancel.setText(R.string.cancel);
     }
 
     //This method goes into read/view mode
     public void modeView(){
         Log.d("MyRecipe","@RecipeDetail: Entering viewing mode");
-        //TODO isViewMode
+        txtTitle.setEnabled(false);
+        txtIns.setEnabled(false);
+
+        btnEditSaveAdd.setText(R.string.edit);
+        btnClearDelete.setText(R.string.delete);
+        btnBackCancel.setText(R.string.back);
     }
 
     /*

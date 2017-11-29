@@ -22,7 +22,7 @@
             android:name=".provider.MyContentProvider"
             android:authorities="mdpcw3.myrecipe1.provider.MyContentProvider"
             android:enabled="true"
-            android:exported="true"></provider>
+            android:exported="true"/>
     </application>
 
 </manifest>

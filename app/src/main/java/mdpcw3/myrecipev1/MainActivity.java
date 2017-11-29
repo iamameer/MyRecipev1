@@ -24,7 +24,6 @@ public class MainActivity extends AppCompatActivity {
     private EditText txtSearch;
     private Button btnSearch, btnExit, btnAdd;
     private ListView listView;
-    private boolean isNewRecipe, isViewRecipe;
 
     //This method initialize settings and items
     private void init(){
@@ -37,8 +36,6 @@ public class MainActivity extends AppCompatActivity {
 
         listView = findViewById(R.id.listView);
 
-        isNewRecipe = false;
-        isViewRecipe = false;
     }
 
     //This method initialize events
@@ -100,7 +97,6 @@ public class MainActivity extends AppCompatActivity {
         Log.d("MyRecipe","=MainActivity: Launching RecipeDetail--> New Recipe");
         Intent intent = new Intent(getApplicationContext(),RecipeDetail.class);
         intent.putExtra("isNewRecipe",true);
-        intent.putExtra("isViewRecipe",false);
         startActivity(intent);
         //TODO isNewRecipe, pass intent
     }
@@ -109,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
     public void viewRecipe(int position){
         Log.d("MyRecipe","=MainActivity: Launching RecipeDetail--> View Recipe : "+listView.getItemAtPosition(position));
         //^implement search()
-        //TODO isViewRecipe, pass intent
+        //TODO !isNewRecipe, pass intent-copy newRecipe()
     }
 
 
