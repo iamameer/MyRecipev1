@@ -65,7 +65,7 @@ public class RecipeDetail extends AppCompatActivity {
             public void onClick(View view) {
                 if (btnBackCancel.getText().toString().equals("Back")){
                     Log.d("MyRecipe","@RecipeDetail: btnBack()");
-                    //TODO BACK; check mode //isEditSaved?
+                        finish();
                 }else if (btnBackCancel.getText().toString().equals("Cancel")){
                     Log.d("MyRecipe","@RecipeDetail: btnCancel()");
                     if(isNewRecipe){
