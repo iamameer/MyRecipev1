@@ -3,6 +3,9 @@
 *                 Has Search function
 *                 Has Exit button
 *                 Can Add new recipe via NEW RECIPE button
+*
+*  Methods      : init(), setEvents(), display(), search(), newRecipe(), viewRecipe()
+*
 * */
 
 package mdpcw3.myrecipev1;
@@ -85,6 +88,7 @@ public class MainActivity extends AppCompatActivity {
         DBHelper dbHelper = new DBHelper(this,null,null,1);
         ArrayList<Recipe> recipeArrayList = dbHelper.display();
 
+        //display if the list is not empty, else simply state empty
         if (recipeArrayList!=null){
             List<String> title = new ArrayList<String>();
             for (int i= 0; i<recipeArrayList.size(); i++){

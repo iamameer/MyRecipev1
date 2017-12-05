@@ -4,6 +4,10 @@
 *                        - with Add, Clear, and Back button
 *                 Mode 2 - Loaded selected item from ListView in MainActivity
 *                        - with Edit, Save, Delete and Cancel button
+*
+*  Methods      : init(), setEvents(), add(), delete(), save(), clear(),
+*                 modeNew(), modeEdit(), modeView(),
+*
 * */
 
 package mdpcw3.myrecipev1;
@@ -222,9 +226,7 @@ public class RecipeDetail extends AppCompatActivity {
         btnBackCancel.setText(R.string.back);
     }
 
-    /*
-    *  Activity Lifecycle
-    * */
+    //Activity Lifecycle onCreate()
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -237,36 +239,42 @@ public class RecipeDetail extends AppCompatActivity {
 
     }
 
+    //Activity Lifecycle onStart()
     @Override
     protected void onStart(){
         super.onStart();
         Log.d("MyRecipe","@RecipeDetail onStart()");
     }
 
+    //Activity Lifecycle onRestart()
     @Override
     protected void onRestart(){
         super.onRestart();
         Log.d("MyRecipe","@RecipeDetail onRestart()");
     }
 
+    //Activity Lifecycle onResume()
     @Override
     protected void onResume(){
         super.onResume();
         Log.d("MyRecipe","@RecipeDetail onResume()");
     }
 
+    //Activity Lifecycle onPause()
     @Override
     protected void onPause(){
         super.onPause();
         Log.d("MyRecipe","@RecipeDetail onPause()");
     }
 
+    //Activity Lifecycle onStop()
     @Override
     protected void onStop(){
         super.onStop();
         Log.d("MyRecipe","@RecipeDetail onStop()");
     }
 
+    //Activity Lifecycle onDestroy()
     @Override
     protected void onDestroy(){
         super.onDestroy();

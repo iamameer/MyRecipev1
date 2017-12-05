@@ -23,27 +23,30 @@ public class Recipe {
         this._recipe = recipe;
     }
 
-
+    //return the id
     public int get_id() {
         return this._id;
     }
 
+    //set the id
     public void set_id(int _id) {
         this._id = _id;
     }
 
+    //return the title
     public String get_title() {
         return this._title;
     }
 
-    public void set_title(String _title) {
-        this._title = _title;
-    }
+    //set the title
+    public void set_title(String _title) {this._title = _title;}
 
+    //return the recipe
     public String get_recipe() {
         return this._recipe;
     }
 
+    //set the recipe
     public void set_recipe(String _recipe) {
         this._recipe = _recipe;
     }

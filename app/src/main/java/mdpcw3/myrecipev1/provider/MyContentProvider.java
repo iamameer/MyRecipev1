@@ -1,5 +1,7 @@
 /*
- * MyContentProvider: Content Provider class to interact with database
+ * MyContentProvider: ContentProvider class to interact with database
+ *
+ * Methods:         : delete(), insert(), query(), update()
  */
 
 package mdpcw3.myrecipev1.provider;
