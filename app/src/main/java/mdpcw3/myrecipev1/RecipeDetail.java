@@ -8,7 +8,6 @@
 
 package mdpcw3.myrecipev1;
 
-import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -72,6 +71,8 @@ public class RecipeDetail extends AppCompatActivity {
                         finish();
                         Log.d("MyRecipe","@RecipeDetail: No new recipe added");
                     }else {
+                        txtTitle.setText(tempTitle);
+                        txtIns.setText(tempIns);
                         modeView();
                     }
                 }

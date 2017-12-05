@@ -8,7 +8,6 @@
 package mdpcw3.myrecipev1;
 
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -21,7 +20,6 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -152,9 +150,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    /*
-    *  Activity Lifecycle
-    * */
+    //Activity Lifecycle onCreate()
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -166,18 +162,21 @@ public class MainActivity extends AppCompatActivity {
         setEvents();
     }
 
+    //Activity Lifecycle onStart()
     @Override
     protected void onStart(){
         super.onStart();
         Log.d("MyRecipe","=MainActivity onStart()");
     }
 
+    //Activity Lifecycle onRestart()
     @Override
     protected void onRestart(){
         super.onRestart();
         Log.d("MyRecipe","=MainActivity onRestart()");
     }
 
+    //Activity Lifecycle onResume()
     @Override
     protected void onResume(){
         super.onResume();
@@ -187,18 +186,21 @@ public class MainActivity extends AppCompatActivity {
         Log.d("MyRecipe","=MainActivity DATABASE display()");
     }
 
+    //Activity Lifecycle onPause()
     @Override
     protected void onPause(){
         super.onPause();
         Log.d("MyRecipe","=MainActivity onPause()");
     }
 
+    //Activity Lifecycle onStop()
     @Override
     protected void onStop(){
         super.onStop();
         Log.d("MyRecipe","=MainActivity onStop()");
     }
 
+    //Activity Lifecycle onDestroy()
     @Override
     protected void onDestroy(){
         super.onDestroy();
