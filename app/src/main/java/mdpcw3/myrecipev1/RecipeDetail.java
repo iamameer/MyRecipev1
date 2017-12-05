@@ -24,6 +24,8 @@ public class RecipeDetail extends AppCompatActivity {
     private EditText txtTitle, txtIns;
     private Button btnBackCancel, btnClearDelete, btnEditSaveAdd;
     private boolean isNewRecipe;
+    private int id;
+    private String tempTitle, tempIns;
 
     //This method initialize settings and items
     private void init(){
@@ -45,6 +47,7 @@ public class RecipeDetail extends AppCompatActivity {
         if (isNewRecipe){
             modeNew();
         }else{
+            id = getIntent().getIntExtra("id",0);
             txtTitle.setText(getIntent().getStringExtra("title"));
             txtIns.setText(getIntent().getStringExtra("recipe"));
             modeView();
@@ -96,9 +99,16 @@ public class RecipeDetail extends AppCompatActivity {
                 if (btnEditSaveAdd.getText().toString().equals("Edit")){
                     Log.d("MyRecipe","@RecipeDetail: btnEdit()");
                     modeEdit();
+                    tempTitle = txtTitle.getText().toString();
+                    tempIns = txtIns.getText().toString();
                 }else if (btnEditSaveAdd.getText().toString().equals("Save")){
                     Log.d("MyRecipe","@RecipeDetail: btnSave()");
-                    //TODO SAVE
+                    if (tempTitle.equals(txtTitle.getText().toString()) && tempIns.equals(txtIns.getText().toString())){
+                        Log.d("MyRecipe","@RecipeDetail: No changes detected!");
+                        Toast.makeText(getApplicationContext(),"No changes detected",Toast.LENGTH_SHORT).show();
+                    }else{
+                        save(id);
+                    }
                 }else if (btnEditSaveAdd.getText().toString().equals("Add")){
                     Log.d("MyRecipe","@RecipeDetail: btnAdd()");
                     add();
@@ -147,9 +157,20 @@ public class RecipeDetail extends AppCompatActivity {
     }
 
     //This method update the selected recipe
-    public void save(){
+    public void save(int id){
         Log.d("MyRecipe","@RecipeDetail: Updating recipe");
-        //TODO btnSave ?
+        DBHelper dbHelper = new DBHelper(this,null,null,1);
+
+        boolean result = dbHelper.updateRecipe(id,txtTitle.getText().toString(),txtIns.getText().toString());
+
+        if (result){
+            Log.d("MyRecipe","@RecipeDetail: Successfully updated recipe");
+            Toast.makeText(getApplicationContext(),"Recipe successfully updated",Toast.LENGTH_SHORT).show();
+        }else{
+            Log.d("MyRecipe","@RecipeDetail: Error updating recipe");
+            Toast.makeText(getApplicationContext(),"Error updating recipe",Toast.LENGTH_SHORT).show();
+        }
+        modeView();
     }
 
     //This method simply clear the EditText

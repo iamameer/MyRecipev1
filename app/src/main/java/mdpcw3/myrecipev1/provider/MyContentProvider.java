@@ -44,8 +44,7 @@ public class MyContentProvider extends ContentProvider {
 
     @Override
     public int delete(Uri uri, String selection, String[] selectionArgs) {
-        // TODO:Implement this to handle requests to delete one or more rows.
-
+        //Handle requests to delete selected row.
         int uriType = sURIMatcher.match(uri);
         SQLiteDatabase sqlDB = myDB.getWritableDatabase();
         int rowsDeleted = 0;
@@ -80,14 +79,14 @@ public class MyContentProvider extends ContentProvider {
 
     @Override
     public String getType(Uri uri) {
-        // TODO: Implement this to handle requests for the MIME type of the data
+        // Handle requests for the MIME type of the data
         // at the given URI.
         throw new UnsupportedOperationException("Not yet implemented");
     }
 
     @Override
     public Uri insert(Uri uri, ContentValues values) {
-        // TODO: Implement this to handle requests to insert a new row.
+        //Handle requests to insert a new row.
         int uriType = sURIMatcher.match(uri);
 
         SQLiteDatabase sqlDB = myDB.getWritableDatabase();
@@ -106,7 +105,7 @@ public class MyContentProvider extends ContentProvider {
 
     @Override
     public boolean onCreate() {
-        // TODO: Implement this to initialize your content provider on startup.
+        //Initialize your content provider on startup.
         myDB = new DBHelper(getContext(), null, null, 1);
         return false;
     }
@@ -114,7 +113,7 @@ public class MyContentProvider extends ContentProvider {
     @Override
     public Cursor query(Uri uri, String[] projection, String selection,
                         String[] selectionArgs, String sortOrder) {
-        // TODO: Implement this to handle query requests from clients.
+        //Handle query requests from clients.
         SQLiteQueryBuilder queryBuilder = new SQLiteQueryBuilder();
         queryBuilder.setTables(RecipeContract.RecipeEntry.TABLE_NAME);
 
@@ -140,7 +139,7 @@ public class MyContentProvider extends ContentProvider {
     @Override
     public int update(Uri uri, ContentValues values, String selection,
                       String[] selectionArgs) {
-        // TODO: Implement this to handle requests to update one or more rows.
+        // Handle requests to update selected row.
         int uriType = sURIMatcher.match(uri);
         SQLiteDatabase sqlDB = myDB.getWritableDatabase();
         int rowsUpdated = 0;

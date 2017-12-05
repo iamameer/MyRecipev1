@@ -141,6 +141,7 @@ public class MainActivity extends AppCompatActivity {
         if (recipe != null){
             Intent intent = new Intent(getApplicationContext(),RecipeDetail.class);
             intent.putExtra("isNewRecipe",false);
+            intent.putExtra("id",recipe.get_id());
             intent.putExtra("title",recipe.get_title());
             intent.putExtra("recipe",recipe.get_recipe());
             startActivity(intent);
@@ -148,7 +149,6 @@ public class MainActivity extends AppCompatActivity {
             Log.d("MyRecipe","=MainActivity: Error viewing item");
             Toast.makeText(getApplicationContext(),"Error viewing item",Toast.LENGTH_SHORT).show();
         }
-
     }
 
 

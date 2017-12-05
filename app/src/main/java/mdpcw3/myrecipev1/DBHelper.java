@@ -11,6 +11,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+import android.widget.Toast;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -95,7 +96,19 @@ public class DBHelper extends SQLiteOpenHelper {
         int rowsDeleted = myCR.delete(MyContentProvider.CONTENT_URI,selection,null);
 
         if (rowsDeleted >0){result = true;}
+        return result;
+    }
 
+    public boolean updateRecipe(int id,String title, String text){
+        boolean result = false;
+        String selection = "_id = \""+id+" \"";
+        ContentValues values = new ContentValues();
+        values.put(RecipeContract.RecipeEntry.COLUMN_NAME_TITLE,title);
+        values.put(RecipeContract.RecipeEntry.COLUMN_NAME_RECIPE,text);
+
+        int rowsUpdated = myCR.update(MyContentProvider.CONTENT_URI,values,selection,null);
+
+        if(rowsUpdated>0){result=true;}
         return result;
     }
 
